@@ -53,7 +53,7 @@
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(695, 12);
+            this.btnSave.Location = new System.Drawing.Point(795, 12);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(122, 27);
             this.btnSave.TabIndex = 1;
@@ -71,7 +71,7 @@
             this.flpFoodItems.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpFoodItems.Location = new System.Drawing.Point(12, 45);
             this.flpFoodItems.Name = "flpFoodItems";
-            this.flpFoodItems.Size = new System.Drawing.Size(805, 296);
+            this.flpFoodItems.Size = new System.Drawing.Size(905, 296);
             this.flpFoodItems.TabIndex = 0;
             this.flpFoodItems.WrapContents = false;
             // 
@@ -80,7 +80,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(829, 353);
+            this.ClientSize = new System.Drawing.Size(929, 353);
             this.Controls.Add(this.flpFoodItems);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnAddFood);

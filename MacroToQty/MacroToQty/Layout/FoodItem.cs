@@ -30,7 +30,7 @@ namespace MacroToQty.Layout
         public FoodItem(int id)
         {
             this.Name = id.ToString();
-            this.Width = 795;
+            this.Width = 895;
             this.Height = 50;
             this.BackColor = Color.Azure;
             AddControls();
@@ -59,16 +59,19 @@ namespace MacroToQty.Layout
             lblCalorie = new Label()
             {
                 Location = new Point(MARGIN_LEFT + 200, MARGIN_TOP),
-                Text = "Calories",
-                Width = 63,
-                Font = new Font("Microsoft Sans Serif", 11.25F)
+                Text = "Cal.",
+                Width = 35,
+                Font = new Font("Microsoft Sans Serif", 10F)
             };
+            var tltCalorie = new ToolTip();
+            tltCalorie.IsBalloon = true;
+            tltCalorie.SetToolTip(lblCalorie, "Calories");
             this.Controls.Add(lblCalorie);
 
             // numCalorie
             numCalorie = new NumericUpDown()
             {
-                Location = new Point(MARGIN_LEFT + 265, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 235, MARGIN_TOP),
                 Width = 55,
                 Minimum = 0,
                 Maximum = 9999,
@@ -81,17 +84,20 @@ namespace MacroToQty.Layout
             // lblProtein
             lblProtein = new Label()
             {
-                Location = new Point(MARGIN_LEFT + 336, MARGIN_TOP),
-                Text = "Protéines",
-                Width = 71,
-                Font = new Font("Microsoft Sans Serif", 11.25F)
+                Location = new Point(MARGIN_LEFT + 310, MARGIN_TOP),
+                Text = "Prot.",
+                Width = 40,
+                Font = new Font("Microsoft Sans Serif", 10F)
             };
+            var tltProtein = new ToolTip();
+            tltProtein.IsBalloon = true;
+            tltProtein.SetToolTip(lblProtein, "Protéines");
             this.Controls.Add(lblProtein);
 
             // numProtein
             numProtein = new NumericUpDown()
             {
-                Location = new Point(MARGIN_LEFT + 410, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 353, MARGIN_TOP),
                 Width = 55,
                 Minimum = 0,
                 Maximum = 9999,
@@ -104,17 +110,20 @@ namespace MacroToQty.Layout
             // lblCarb
             lblCarb = new Label()
             {
-                Location = new Point(MARGIN_LEFT + 483, MARGIN_TOP),
-                Text = "Glucides",
-                Width = 66,
-                Font = new Font("Microsoft Sans Serif", 11.25F)
+                Location = new Point(MARGIN_LEFT + 430, MARGIN_TOP),
+                Text = "Gluc.",
+                Width = 43,
+                Font = new Font("Microsoft Sans Serif", 10F)
             };
+            var tltCarb = new ToolTip();
+            tltCarb.IsBalloon = true;
+            tltCarb.SetToolTip(lblCarb, "Glucides");
             this.Controls.Add(lblCarb);
 
             // numCarb
             numCarb = new NumericUpDown()
             {
-                Location = new Point(MARGIN_LEFT + 550, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 475, MARGIN_TOP),
                 Width = 55,
                 Minimum = 0,
                 Maximum = 9999,
@@ -127,17 +136,20 @@ namespace MacroToQty.Layout
             // lblFat
             lblFat = new Label()
             {
-                Location = new Point(MARGIN_LEFT + 623, MARGIN_TOP),
-                Text = "Gras",
-                Width = 41,
-                Font = new Font("Microsoft Sans Serif", 11.25F)
+                Location = new Point(MARGIN_LEFT + 550, MARGIN_TOP),
+                Text = "Lip.",
+                Width = 35,
+                Font = new Font("Microsoft Sans Serif", 10F)
             };
+            var tltFat = new ToolTip();
+            tltFat.IsBalloon = true;
+            tltFat.SetToolTip(lblFat, "Lipides");
             this.Controls.Add(lblFat);
 
             // numFat
             numFat = new NumericUpDown()
             {
-                Location = new Point(MARGIN_LEFT + 665, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 585, MARGIN_TOP),
                 Width = 55,
                 Minimum = 0,
                 Maximum = 9999,
@@ -151,7 +163,7 @@ namespace MacroToQty.Layout
             btnDelete = new Button()
             {
                 Image = Properties.Resources.delete,
-                Location = new Point(MARGIN_LEFT + 740, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 820, MARGIN_TOP),
                 BackColor = Color.LightGray,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Width = 20,

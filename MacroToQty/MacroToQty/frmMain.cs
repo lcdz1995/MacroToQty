@@ -15,19 +15,16 @@ namespace MacroToQty
     public partial class frmMain : Form
     {
         private int GroceryItemsId = 1;
+        private frmFood frmFood = null;
 
         #region Load / Init
         public frmMain()
-        {
+        {            
             InitializeComponent();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
-        {
-            var link = new LinkLabel.Link();
-            link.LinkData = "https://www.bodybuilding.com/fun/macronutrients_calculator.htm";
-            lnkMacroCalc.Links.Add(link);
-            
+        {            
             BindUserMacros();
         }
 
@@ -135,9 +132,9 @@ namespace MacroToQty
             Process.Start(e.Link.LinkData as string);
         }
 
-        private void btnFood_Click(object sender, EventArgs e)
+        private void frmFood_FormClosed(object sender, EventArgs e)
         {
-            new frmFood().Show();
+            this.frmFood = null;
         }
 
         #region Helpers
@@ -147,7 +144,6 @@ namespace MacroToQty
             numProteins.Enabled = enabled;
             numFat.Enabled = enabled;
             numCarbs.Enabled = enabled;
-            btnFood.Enabled = enabled;
             btnAddGroceryItem.Enabled = enabled;
 
             foreach (Control control in flpGroceryItems.Controls)
@@ -165,5 +161,24 @@ namespace MacroToQty
             }
         }
         #endregion
+
+        private void alimentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.frmFood == null)
+            {
+                this.frmFood = new frmFood();
+                this.frmFood.FormClosed += frmFood_FormClosed;
+            }
+
+            this.frmFood.Show();
+            this.frmFood.BringToFront();
+        }
+
+        private void macronutrientCalculatorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var link = new LinkLabel.Link();
+            link.LinkData = "https://www.bodybuilding.com/fun/macronutrients_calculator.htm";
+            Process.Start(link.LinkData as string);
+        }
     }
 }

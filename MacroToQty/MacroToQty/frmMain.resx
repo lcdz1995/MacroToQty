@@ -121,7 +121,7 @@
   <data name="btnAddGroceryItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsAAAA7AAWrWiQkAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8
+        YQUAAAAJcEhZcwAADr4AAA6+AepCscAAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8
         AAACzElEQVQ4T41S204TURQd3wyJhvgnBglQYNrO9DJtp+0MvWALNPhkJBovP2BC9CP8CmI0xMQ3xYAi
         PrTT63RaWii0gkZuUkq7juec9oVEE9dkZ8/Za629z5k5wt8QroaHU63Ii/nGTJVGb35Pt1KtmeW5DeXm
         QPJvJHa1Z/P7eilZ1y7j1QAiFQXxqgq2ntvXi4kd7fFAehWhfOjG3d3Qu8WzGKFCEq34yUI1gqX6PSQr
@@ -137,24 +137,12 @@
         2vlT+usRltYAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="btnFood.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAAKnSURBVDhPlZF7SJNhFIc/l2Rtbs5dnFO3yW7qdKabLFFq
-        RDYlLNFpmZDV0IKSFCelpU0EpQukEfhP0YVCyKREnGGiTueQEGmpkCGkc+WlzUxFLJJzWvnBCFLsgRfe
-        w/k9nJfzEltxo/Uo/X6rgU6W/8/Fhhhe+YPECrLcPukmPrV27Izi9730kargavth0Z/GtvispubVJ1ca
-        jNK1a9WqvqoriqILjdp0GhiDyMTWWCoKH1ozE3G8rBQ+lRTgyKFkHBILlh8YZK5zd5XN2sHUcDL6N0gQ
-        lEk2pwVbXuBa4z101d3EiZxceH8wDYdpLHSy+GhRhWH+dY3rbFNmGql5cXJlWVhcjO7aGvyQmQH2+CQY
-        lCigXxIJHXQmdO1mwgSVC906zWzB4xN3dFUStWeqD6kTxLRQ0Puzshinso+AXRELNrEc+iRR0MnmQxuF
-        Cu3MQLD6sWCaFboKdLEs0RTGIkwEhdQJwnVaP7BeUwKTB9QwHB0JVpkCXjP4YPZMb/OlQbsfHbpZLJgT
-        CHFGJD1Pal4WsnVD6+V6cKRGw7uEOLCK5PBqVwB07GCA2T8AzBQGWNgc+MIVoTNYlk9qG3gW6ONOj7GD
-        cR/M6uNgZI8ceulc6ArkQudOJnRSWZ7XBMJocAh+DBU5ZnmxNFLdYIzI8V/MVc/DZSW4jkfBaKQQrBw+
-        9HiW1hPgOQwODLJ5uCISo4MvLSc1L3aekbZSppuBWxr4alDCuEoGb3hCsAWFgI3OAzs/FL+JpOgQRzwx
-        eb6b1Lz0atF3tb5wCp5mwNKlJJjQRMNbgQTsYeE4J5fhdIT8+4xAUUrG/83q83oLDtThWkMezutTcFG7
-        H91Je9EVr26eTEiIJ2Obs2J+ply3Nff/eHl7Ybm6yLl06liT+2RWCtneBIL4BYOPLvaJk1DGAAAAAElF
-        TkSuQmCC
-</value>
-  </data>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>42</value>
+  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAA0AMDAQAAEABABoBgAA1gAAACAgEAABAAQA6AIAAD4HAAAYGBAAAQAEAOgBAAAmCgAAEBAQAAEA

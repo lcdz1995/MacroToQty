@@ -48,7 +48,6 @@ namespace MacroToQty
             EnableControls(false);
             AddFoodItem();
             EnableControls(true);
-            // test
         }
 
         private void AddFoodItem(Food item = null)
