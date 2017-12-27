@@ -1,5 +1,4 @@
-﻿using MacroToQty.Code;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MacroToQty.Code;
 
 namespace MacroToQty
 {
@@ -16,6 +16,7 @@ namespace MacroToQty
     {
         private int GroceryItemsId = 1;
         private frmFood frmFood = null;
+        private bool IsWeekMode = false;
 
         #region Load / Init
         public frmMain()
@@ -25,10 +26,10 @@ namespace MacroToQty
 
         private void frmMain_Load(object sender, EventArgs e)
         {            
-            BindUserMacros();
+            BindUserInfos();
         }
 
-        private void BindUserMacros()
+        private void BindUserInfos()
         {
             try
             {
@@ -46,6 +47,20 @@ namespace MacroToQty
 
                     decimal.TryParse(UserInfosManager.GetValue(db, "Fat"), out value);
                     numFat.Value = value;
+
+                    var isWeekModeStr = UserInfosManager.GetValue(db, key: "IsWeekMode");
+                    if (isWeekModeStr == "")
+                    {
+                        UserInfosManager.Save(db, key: "IsWeekMode", value: IsWeekMode.ToString());
+                    }
+                    else
+                    {
+                        IsWeekMode = bool.Parse(isWeekModeStr);
+                        if (IsWeekMode)
+                        {
+                            mettreEnModeSemaineToolStripMenuItem.Text = "Mettre en mode journée";
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -162,6 +177,7 @@ namespace MacroToQty
         }
         #endregion
 
+        #region ToolStripMenu
         private void alimentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.frmFood == null)
@@ -180,5 +196,45 @@ namespace MacroToQty
             link.LinkData = "https://www.bodybuilding.com/fun/macronutrients_calculator.htm";
             Process.Start(link.LinkData as string);
         }
+
+        private void réinitialiserLaListeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            flpGroceryItems.Controls.Clear();
+        }
+
+        private void réinitialiserLesDonnéesDeLutilisateurToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            numCalories.Value = 0;
+            numProteins.Value = 0;
+            numCarbs.Value = 0;
+            numFat.Value = 0;
+        }
+
+        private void mettreEnModeSemaineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (IsWeekMode)
+            {
+                mettreEnModeSemaineToolStripMenuItem.Text = "Mettre en mode semaine";
+                numCalories.Value = (int)(numCalories.Value / 7);
+                numProteins.Value = (int)(numProteins.Value / 7);
+                numCarbs.Value = (int)(numCarbs.Value / 7);
+                numFat.Value = (int)(numFat.Value / 7);
+            }
+            else
+            {
+                mettreEnModeSemaineToolStripMenuItem.Text = "Mettre en mode journée";
+                numCalories.Value = (int)(numCalories.Value * 7);
+                numProteins.Value = (int)(numProteins.Value * 7);
+                numCarbs.Value = (int)(numCarbs.Value * 7);
+                numFat.Value = (int)(numFat.Value * 7);
+            }
+
+            IsWeekMode = !IsWeekMode;
+            using (var db = new DbContext())
+            {
+                UserInfosManager.Save(db, key: "IsWeekMode", value: IsWeekMode.ToString());
+            }
+        }
+        #endregion
     }
 }
