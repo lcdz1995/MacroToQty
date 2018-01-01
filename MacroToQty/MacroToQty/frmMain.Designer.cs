@@ -51,16 +51,18 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.alimentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.macronutrientCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSave = new System.Windows.Forms.Button();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.réinitialiserLaListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.réinitialiserLesDonnéesDeLutilisateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mettreEnModeSemaineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.numMult = new System.Windows.Forms.NumericUpDown();
+            this.lblMult = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numCalories)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numProteins)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCarbs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFat)).BeginInit();
             this.menuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMult)).BeginInit();
             this.SuspendLayout();
             // 
             // flpGroceryItems
@@ -150,7 +152,7 @@
             // 
             this.lblUserCalories.AutoSize = true;
             this.lblUserCalories.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.lblUserCalories.Location = new System.Drawing.Point(12, 36);
+            this.lblUserCalories.Location = new System.Drawing.Point(130, 36);
             this.lblUserCalories.Name = "lblUserCalories";
             this.lblUserCalories.Size = new System.Drawing.Size(63, 18);
             this.lblUserCalories.TabIndex = 7;
@@ -160,7 +162,7 @@
             // 
             this.lblUserProtein.AutoSize = true;
             this.lblUserProtein.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.lblUserProtein.Location = new System.Drawing.Point(188, 36);
+            this.lblUserProtein.Location = new System.Drawing.Point(296, 36);
             this.lblUserProtein.Name = "lblUserProtein";
             this.lblUserProtein.Size = new System.Drawing.Size(71, 18);
             this.lblUserProtein.TabIndex = 8;
@@ -170,7 +172,7 @@
             // 
             this.lblUserCarbs.AutoSize = true;
             this.lblUserCarbs.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.lblUserCarbs.Location = new System.Drawing.Point(371, 36);
+            this.lblUserCarbs.Location = new System.Drawing.Point(469, 36);
             this.lblUserCarbs.Name = "lblUserCarbs";
             this.lblUserCarbs.Size = new System.Drawing.Size(66, 18);
             this.lblUserCarbs.TabIndex = 9;
@@ -180,7 +182,7 @@
             // 
             this.lblUserFat.AutoSize = true;
             this.lblUserFat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.lblUserFat.Location = new System.Drawing.Point(551, 36);
+            this.lblUserFat.Location = new System.Drawing.Point(639, 36);
             this.lblUserFat.Name = "lblUserFat";
             this.lblUserFat.Size = new System.Drawing.Size(54, 18);
             this.lblUserFat.TabIndex = 10;
@@ -189,7 +191,7 @@
             // numCalories
             // 
             this.numCalories.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numCalories.Location = new System.Drawing.Point(81, 36);
+            this.numCalories.Location = new System.Drawing.Point(199, 36);
             this.numCalories.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -198,12 +200,11 @@
             this.numCalories.Name = "numCalories";
             this.numCalories.Size = new System.Drawing.Size(60, 21);
             this.numCalories.TabIndex = 12;
-            this.numCalories.ValueChanged += new System.EventHandler(this.numCalories_ValueChanged);
             // 
             // numProteins
             // 
             this.numProteins.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numProteins.Location = new System.Drawing.Point(265, 36);
+            this.numProteins.Location = new System.Drawing.Point(373, 36);
             this.numProteins.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -213,12 +214,11 @@
             this.numProteins.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.numProteins.Size = new System.Drawing.Size(60, 21);
             this.numProteins.TabIndex = 13;
-            this.numProteins.ValueChanged += new System.EventHandler(this.numProteins_ValueChanged);
             // 
             // numCarbs
             // 
             this.numCarbs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numCarbs.Location = new System.Drawing.Point(443, 36);
+            this.numCarbs.Location = new System.Drawing.Point(541, 36);
             this.numCarbs.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -227,12 +227,11 @@
             this.numCarbs.Name = "numCarbs";
             this.numCarbs.Size = new System.Drawing.Size(60, 21);
             this.numCarbs.TabIndex = 14;
-            this.numCarbs.ValueChanged += new System.EventHandler(this.numCarbs_ValueChanged);
             // 
             // numFat
             // 
             this.numFat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numFat.Location = new System.Drawing.Point(610, 36);
+            this.numFat.Location = new System.Drawing.Point(698, 36);
             this.numFat.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -241,7 +240,6 @@
             this.numFat.Name = "numFat";
             this.numFat.Size = new System.Drawing.Size(60, 21);
             this.numFat.TabIndex = 15;
-            this.numFat.ValueChanged += new System.EventHandler(this.numFat_ValueChanged);
             // 
             // lblTotalCalories
             // 
@@ -318,24 +316,11 @@
             this.macronutrientCalculatorToolStripMenuItem.Text = "Macronutrient Calculator";
             this.macronutrientCalculatorToolStripMenuItem.Click += new System.EventHandler(this.macronutrientCalculatorToolStripMenuItem_Click);
             // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(829, 36);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(106, 27);
-            this.btnSave.TabIndex = 22;
-            this.btnSave.Text = "    Enregistrer";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
             // actionsToolStripMenuItem
             // 
             this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.réinitialiserLaListeToolStripMenuItem,
-            this.réinitialiserLesDonnéesDeLutilisateurToolStripMenuItem,
-            this.mettreEnModeSemaineToolStripMenuItem});
+            this.réinitialiserLesDonnéesDeLutilisateurToolStripMenuItem});
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
             this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.actionsToolStripMenuItem.Text = "Actions";
@@ -354,12 +339,42 @@
             this.réinitialiserLesDonnéesDeLutilisateurToolStripMenuItem.Text = "Réinitialiser les données de l\'utilisateur";
             this.réinitialiserLesDonnéesDeLutilisateurToolStripMenuItem.Click += new System.EventHandler(this.réinitialiserLesDonnéesDeLutilisateurToolStripMenuItem_Click);
             // 
-            // mettreEnModeSemaineToolStripMenuItem
+            // btnSave
             // 
-            this.mettreEnModeSemaineToolStripMenuItem.Name = "mettreEnModeSemaineToolStripMenuItem";
-            this.mettreEnModeSemaineToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
-            this.mettreEnModeSemaineToolStripMenuItem.Text = "Mettre en mode semaine";
-            this.mettreEnModeSemaineToolStripMenuItem.Click += new System.EventHandler(this.mettreEnModeSemaineToolStripMenuItem_Click);
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(829, 36);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(106, 27);
+            this.btnSave.TabIndex = 22;
+            this.btnSave.Text = "    Enregistrer";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // numMult
+            // 
+            this.numMult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.numMult.Location = new System.Drawing.Point(56, 36);
+            this.numMult.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numMult.Name = "numMult";
+            this.numMult.Size = new System.Drawing.Size(38, 21);
+            this.numMult.TabIndex = 23;
+            this.numMult.ValueChanged += new System.EventHandler(this.numMult_ValueChanged);
+            // 
+            // lblMult
+            // 
+            this.lblMult.AutoSize = true;
+            this.lblMult.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.lblMult.Location = new System.Drawing.Point(12, 36);
+            this.lblMult.Name = "lblMult";
+            this.lblMult.Size = new System.Drawing.Size(40, 18);
+            this.lblMult.TabIndex = 24;
+            this.lblMult.Text = "Mult.";
             // 
             // frmMain
             // 
@@ -367,6 +382,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(947, 521);
+            this.Controls.Add(this.lblMult);
+            this.Controls.Add(this.numMult);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblTotalFat);
             this.Controls.Add(this.lblTotalCarb);
@@ -403,6 +420,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numFat)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMult)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,7 +454,8 @@
         private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem réinitialiserLaListeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem réinitialiserLesDonnéesDeLutilisateurToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mettreEnModeSemaineToolStripMenuItem;
+        private System.Windows.Forms.NumericUpDown numMult;
+        private System.Windows.Forms.Label lblMult;
     }
 }
 

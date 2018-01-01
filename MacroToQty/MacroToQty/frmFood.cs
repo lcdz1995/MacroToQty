@@ -43,6 +43,7 @@ namespace MacroToQty
         }
         #endregion
 
+        #region Events
         private void btnAddFood_Click(object sender, EventArgs e)
         {
             EnableControls(false);
@@ -75,8 +76,9 @@ namespace MacroToQty
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException();
         }
+        #endregion
 
         #region Helpers
         private void EnableControls(bool enabled)

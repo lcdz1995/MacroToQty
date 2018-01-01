@@ -16,7 +16,6 @@ namespace MacroToQty
     {
         private int GroceryItemsId = 1;
         private frmFood frmFood = null;
-        private bool IsWeekMode = false;
 
         #region Load / Init
         public frmMain()
@@ -29,38 +28,26 @@ namespace MacroToQty
             BindUserInfos();
         }
 
-        private void BindUserInfos()
+        private void BindUserInfos(int mult = 1)
         {
             try
             {
                 decimal value = 0;
                 using (var db = new DbContext())
                 {
+                    numMult.Value = mult;
+
                     decimal.TryParse(UserInfosManager.GetValue(db, "Calories"), out value);
-                    numCalories.Value = value;
+                    numCalories.Value = value * mult;
 
                     decimal.TryParse(UserInfosManager.GetValue(db, "Proteins"), out value);
-                    numProteins.Value = value;
+                    numProteins.Value = value * mult;
 
                     decimal.TryParse(UserInfosManager.GetValue(db, "Carbs"), out value);
-                    numCarbs.Value = value;
+                    numCarbs.Value = value * mult;
 
                     decimal.TryParse(UserInfosManager.GetValue(db, "Fat"), out value);
-                    numFat.Value = value;
-
-                    var isWeekModeStr = UserInfosManager.GetValue(db, key: "IsWeekMode");
-                    if (isWeekModeStr == "")
-                    {
-                        UserInfosManager.Save(db, key: "IsWeekMode", value: IsWeekMode.ToString());
-                    }
-                    else
-                    {
-                        IsWeekMode = bool.Parse(isWeekModeStr);
-                        if (IsWeekMode)
-                        {
-                            mettreEnModeSemaineToolStripMenuItem.Text = "Mettre en mode journée";
-                        }
-                    }
+                    numFat.Value = value * mult;
                 }
             }
             catch (Exception ex)
@@ -110,34 +97,13 @@ namespace MacroToQty
             lblTotalFat.Text = totalFat.ToString();
         }
 
-        private void numCalories_ValueChanged(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             using (var db = new DbContext())
             {
                 UserInfosManager.Save(db, "Calories", numCalories.Value.ToString());
-            }
-        }
-
-        private void numProteins_ValueChanged(object sender, EventArgs e)
-        {
-            using (var db = new DbContext())
-            {
                 UserInfosManager.Save(db, "Proteins", numProteins.Value.ToString());
-            }
-        }
-
-        private void numCarbs_ValueChanged(object sender, EventArgs e)
-        {
-            using (var db = new DbContext())
-            {
                 UserInfosManager.Save(db, "Carbs", numCarbs.Value.ToString());
-            }
-        }
-
-        private void numFat_ValueChanged(object sender, EventArgs e)
-        {
-            using (var db = new DbContext())
-            {
                 UserInfosManager.Save(db, "Fat", numFat.Value.ToString());
             }
         }
@@ -150,6 +116,11 @@ namespace MacroToQty
         private void frmFood_FormClosed(object sender, EventArgs e)
         {
             this.frmFood = null;
+        }
+
+        private void numMult_ValueChanged(object sender, EventArgs e)
+        {
+            BindUserInfos((int)numMult.Value);
         }
 
         #region Helpers
@@ -208,32 +179,6 @@ namespace MacroToQty
             numProteins.Value = 0;
             numCarbs.Value = 0;
             numFat.Value = 0;
-        }
-
-        private void mettreEnModeSemaineToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (IsWeekMode)
-            {
-                mettreEnModeSemaineToolStripMenuItem.Text = "Mettre en mode semaine";
-                numCalories.Value = (int)(numCalories.Value / 7);
-                numProteins.Value = (int)(numProteins.Value / 7);
-                numCarbs.Value = (int)(numCarbs.Value / 7);
-                numFat.Value = (int)(numFat.Value / 7);
-            }
-            else
-            {
-                mettreEnModeSemaineToolStripMenuItem.Text = "Mettre en mode journée";
-                numCalories.Value = (int)(numCalories.Value * 7);
-                numProteins.Value = (int)(numProteins.Value * 7);
-                numCarbs.Value = (int)(numCarbs.Value * 7);
-                numFat.Value = (int)(numFat.Value * 7);
-            }
-
-            IsWeekMode = !IsWeekMode;
-            using (var db = new DbContext())
-            {
-                UserInfosManager.Save(db, key: "IsWeekMode", value: IsWeekMode.ToString());
-            }
         }
         #endregion
     }

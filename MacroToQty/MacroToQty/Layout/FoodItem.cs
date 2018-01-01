@@ -9,8 +9,9 @@ using System.Windows.Forms;
 
 namespace MacroToQty.Layout
 {
-    class FoodItem : Panel
+    public class FoodItem : Panel
     {
+        #region Members
         private const int MARGIN_TOP = 15;
         private const int MARGIN_LEFT = 15;
 
@@ -21,12 +22,17 @@ namespace MacroToQty.Layout
         private Label lblProtein;
         private Label lblCarb;
         private Label lblFat;
+        private Label lblQuantity;
         private NumericUpDown numCalorie;
         private NumericUpDown numProtein;
         private NumericUpDown numCarb;
         private NumericUpDown numFat;
+        private CheckBox chkIsUnit;
+        private NumericUpDown numQuantity;
         private Button btnDelete;
+        #endregion
 
+        #region Constructors
         public FoodItem(int id)
         {
             this.Name = id.ToString();
@@ -43,7 +49,10 @@ namespace MacroToQty.Layout
             numProtein.Value = item.Protein;
             numCarb.Value = item.Carbs;
             numFat.Value = item.Fat;
+            chkIsUnit.Checked = item.IsUnit;
+            numQuantity.Value = item.Quantity;
         }
+        #endregion
 
         private void AddControls()
         {
@@ -159,11 +168,45 @@ namespace MacroToQty.Layout
             };
             this.Controls.Add(numFat);
 
+            // chkIsUnit
+            chkIsUnit = new CheckBox()
+            {
+                Location = new Point(MARGIN_LEFT + 670, MARGIN_TOP - 2),
+                Font = new Font("Microsoft Sans Serif", 10F),
+                Width = 60,
+                Text = "Unit"
+            };
+            chkIsUnit.CheckedChanged += chkIsUnit_CheckedChanged;
+            this.Controls.Add(chkIsUnit);
+
+            // lblQuantity
+            lblQuantity = new Label()
+            {
+                Location = new Point(MARGIN_LEFT + 730, MARGIN_TOP),
+                Font = new Font("Microsoft Sans Serif", 10F),
+                Text = "Qty.",
+                Width = 35
+            };
+            this.Controls.Add(lblQuantity);
+
+            // numQuantity
+            numQuantity = new NumericUpDown()
+            {
+                Location = new Point(MARGIN_LEFT + 770, MARGIN_TOP),
+                Width = 55,
+                Minimum = 0,
+                Maximum = 9999,
+                Increment = 1,
+                DecimalPlaces = 0,
+                BackColor = Color.AliceBlue
+            };
+            this.Controls.Add(numQuantity);
+
             // btnDelete
             btnDelete = new Button()
             {
                 Image = Properties.Resources.delete,
-                Location = new Point(MARGIN_LEFT + 820, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 845, MARGIN_TOP),
                 BackColor = Color.LightGray,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Width = 20,
@@ -173,6 +216,12 @@ namespace MacroToQty.Layout
             this.Controls.Add(btnDelete);
         }
 
+        #region Events
+        private void chkIsUnit_CheckedChanged(object sender, EventArgs e)
+        {
+            numQuantity.Enabled = !chkIsUnit.Checked;
+        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (DeleteButtonClicked != null)
@@ -180,5 +229,6 @@ namespace MacroToQty.Layout
                 DeleteButtonClicked(this, e);
             }
         }
+        #endregion
     }
 }
