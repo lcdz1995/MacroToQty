@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace MacroToQty.Code
 {
-    class DbContext : IDisposable
+    public class DbContext : IDisposable
     {
         const string CONNECTION_STRING = "Server=(localdb)\\LocalBoii;Database=MacroToQty;Trusted_Connection=True;MultipleActiveResultSets=true;";
         SqlConnection connection = null;

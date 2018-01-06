@@ -14,8 +14,6 @@ namespace MacroToQty
 {
     public partial class frmFood : Form
     {
-        private int FoodItemsId = 1;
-
         #region Load / Init
         public frmFood()
         {
@@ -57,11 +55,11 @@ namespace MacroToQty
 
             if (item != null)
             {
-                foodItem = new FoodItem(FoodItemsId++, item);
+                foodItem = new FoodItem(item);
             }
             else
             {
-                foodItem = new FoodItem(FoodItemsId++);
+                foodItem = new FoodItem((int?)null);
             }
             foodItem.DeleteButtonClicked += DeleteFoodItem;
             flpFoodItems.Controls.Add(foodItem);
@@ -76,7 +74,19 @@ namespace MacroToQty
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var items = new List<Food>();
+            foreach (FoodItem item in flpFoodItems.Controls)
+            {
+                items.Add(item.GetFoodBO());
+            }
+
+            using (var db = new DbContext())
+            {
+                FoodManager.DeleteAll(db);
+                FoodManager.BulkInsert(db, items: items);
+            }
+
+            this.Close();
         }
         #endregion
 

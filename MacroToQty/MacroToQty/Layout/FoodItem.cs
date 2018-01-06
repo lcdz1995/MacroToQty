@@ -33,7 +33,7 @@ namespace MacroToQty.Layout
         #endregion
 
         #region Constructors
-        public FoodItem(int id)
+        public FoodItem(int? id)
         {
             this.Name = id.ToString();
             this.Width = 895;
@@ -42,7 +42,7 @@ namespace MacroToQty.Layout
             AddControls();
         }
 
-        public FoodItem(int id, Food item) : this(id)
+        public FoodItem(Food item) : this(item.Id)
         {
             txtName.Text = item.Name;
             numCalorie.Value = item.Calorie;
@@ -214,6 +214,23 @@ namespace MacroToQty.Layout
             };
             btnDelete.Click += btnDelete_Click;
             this.Controls.Add(btnDelete);
+        }
+
+        public Food GetFoodBO()
+        {
+            int foodId;
+            int? id = int.TryParse(this.Name, out foodId) ? foodId : (int?)null;
+            return new Food()
+            {
+                Id = id,
+                Name = txtName.Text,
+                Calorie = (int)numCalorie.Value,
+                Protein = (int)numProtein.Value,
+                Carbs = (int)numCarb.Value,
+                Fat = (int)numFat.Value,
+                IsUnit = chkIsUnit.Checked,
+                Quantity = (int)numQuantity.Value
+            };
         }
 
         #region Events

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -7,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace MacroToQty.Code
 {
-    class FoodManager
+    public class FoodManager
     {
         public static List<Food> GetList(DbContext db)
         {
             var items = new List<Food>();
 
-            using (var command = new SqlCommand("SELECT * FROM Food", db.Connection))
+            using (var command = new SqlCommand("SELECT * FROM Food ORDER BY Name", db.Connection))
             {
                 using (var reader = command.ExecuteReader())
                 {
@@ -31,8 +33,9 @@ namespace MacroToQty.Code
         {
             var item = new Food();
 
-            using (var command = new SqlCommand("", db.Connection))
+            using (var command = new SqlCommand("SELECT * FROM Food WHERE Id = @Id", db.Connection))
             {
+                command.Parameters.AddWithValue("@Id", item.Id);
                 using (var reader = command.ExecuteReader())
                 {
                     reader.Read();
@@ -41,6 +44,23 @@ namespace MacroToQty.Code
             }
 
             return item;
+        }
+
+        public static void BulkInsert(DbContext db, List<Food> items)
+        {
+            using (var bulkCopy = new SqlBulkCopy(db.Connection, SqlBulkCopyOptions.CheckConstraints, null))
+            {
+                bulkCopy.DestinationTableName = "dbo.Food";
+
+                try
+                {
+                    bulkCopy.WriteToServer(items.ToDataTable());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
         }
 
         public static void Save(DbContext db, Food item)
@@ -74,11 +94,27 @@ namespace MacroToQty.Code
             }
         }
 
+        public static void DeleteAll(DbContext db)
+        {
+            try
+            {
+                var command = new SqlCommand("DELETE FROM Food", db.Connection);
+                command.ExecuteNonQuery();
+
+                command = new SqlCommand("DBCC CHECKIDENT (Food, RESEED, 0)", db.Connection);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public static void Delete(DbContext db, int id)
         {
             try
             {
-                var command = new SqlCommand(@"DELETE FROM Food WHERE Id = @Id", db.Connection);
+                var command = new SqlCommand("DELETE FROM Food WHERE Id = @Id", db.Connection);
                 command.Parameters.AddWithValue("@Id", id);
                 command.ExecuteNonQuery();
             }
@@ -101,6 +137,34 @@ namespace MacroToQty.Code
                 Quantity = reader.GetInt32(6),
                 IsUnit = reader.GetBoolean(7)
             };
+        }
+    }
+
+    public static class Helpers
+    {
+        public static DataTable ToDataTable(this List<Food> items)
+        {
+            var properties = TypeDescriptor.GetProperties(typeof(Food));
+            var table = new DataTable();
+
+            foreach (PropertyDescriptor prop in properties)
+            {
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+            }
+
+            foreach (Food item in items)
+            {
+                var row = table.NewRow();
+
+                foreach (PropertyDescriptor prop in properties)
+                {
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                }
+
+                table.Rows.Add(row);
+            }
+
+            return table;
         }
     }
 }
