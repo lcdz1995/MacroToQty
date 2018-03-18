@@ -1,10 +1,6 @@
 ﻿using MacroToQty.Code;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MacroToQty.Layout
@@ -36,7 +32,7 @@ namespace MacroToQty.Layout
         public FoodItem(int? id)
         {
             this.Name = id.ToString();
-            this.Width = 895;
+            this.Width = 900;
             this.Height = 50;
             this.BackColor = Color.Azure;
             AddControls();
@@ -88,6 +84,7 @@ namespace MacroToQty.Layout
                 DecimalPlaces = 0,
                 BackColor = Color.AliceBlue
             };
+            numCalorie.Enter += NumericUpDown_Enter;
             this.Controls.Add(numCalorie);
 
             // lblProtein
@@ -114,6 +111,7 @@ namespace MacroToQty.Layout
                 DecimalPlaces = 0,
                 BackColor = Color.AliceBlue
             };
+            numProtein.Enter += NumericUpDown_Enter;
             this.Controls.Add(numProtein);
 
             // lblCarb
@@ -140,6 +138,7 @@ namespace MacroToQty.Layout
                 DecimalPlaces = 0,
                 BackColor = Color.AliceBlue
             };
+            numCarb.Enter += NumericUpDown_Enter;
             this.Controls.Add(numCarb);
 
             // lblFat
@@ -166,14 +165,15 @@ namespace MacroToQty.Layout
                 DecimalPlaces = 0,
                 BackColor = Color.AliceBlue
             };
+            numFat.Enter += NumericUpDown_Enter;
             this.Controls.Add(numFat);
 
             // chkIsUnit
             chkIsUnit = new CheckBox()
             {
-                Location = new Point(MARGIN_LEFT + 670, MARGIN_TOP - 2),
+                Location = new Point(MARGIN_LEFT + 670, MARGIN_TOP),
                 Font = new Font("Microsoft Sans Serif", 10F),
-                Width = 60,
+                Width = 65,
                 Text = "Unit"
             };
             chkIsUnit.CheckedChanged += chkIsUnit_CheckedChanged;
@@ -182,7 +182,7 @@ namespace MacroToQty.Layout
             // lblQuantity
             lblQuantity = new Label()
             {
-                Location = new Point(MARGIN_LEFT + 730, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 740, MARGIN_TOP),
                 Font = new Font("Microsoft Sans Serif", 10F),
                 Text = "Qty.",
                 Width = 35
@@ -192,7 +192,7 @@ namespace MacroToQty.Layout
             // numQuantity
             numQuantity = new NumericUpDown()
             {
-                Location = new Point(MARGIN_LEFT + 770, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 780, MARGIN_TOP),
                 Width = 55,
                 Minimum = 0,
                 Maximum = 9999,
@@ -200,13 +200,14 @@ namespace MacroToQty.Layout
                 DecimalPlaces = 0,
                 BackColor = Color.AliceBlue
             };
+            numQuantity.Enter += NumericUpDown_Enter;
             this.Controls.Add(numQuantity);
 
             // btnDelete
             btnDelete = new Button()
             {
                 Image = Properties.Resources.delete,
-                Location = new Point(MARGIN_LEFT + 845, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 855, MARGIN_TOP),
                 BackColor = Color.LightGray,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Width = 20,
@@ -237,6 +238,12 @@ namespace MacroToQty.Layout
         private void chkIsUnit_CheckedChanged(object sender, EventArgs e)
         {
             numQuantity.Enabled = !chkIsUnit.Checked;
+        }
+
+        private void NumericUpDown_Enter(object sender, EventArgs e)
+        {
+            var s = sender as NumericUpDown;
+            s.Select(0, s.Text.Length);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

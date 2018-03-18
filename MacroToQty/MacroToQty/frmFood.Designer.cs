@@ -39,9 +39,10 @@
             this.btnAddFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.btnAddFood.Image = ((System.Drawing.Image)(resources.GetObject("btnAddFood.Image")));
             this.btnAddFood.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddFood.Location = new System.Drawing.Point(12, 12);
+            this.btnAddFood.Location = new System.Drawing.Point(16, 15);
+            this.btnAddFood.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddFood.Name = "btnAddFood";
-            this.btnAddFood.Size = new System.Drawing.Size(82, 27);
+            this.btnAddFood.Size = new System.Drawing.Size(109, 33);
             this.btnAddFood.TabIndex = 0;
             this.btnAddFood.Text = "   Ajouter";
             this.btnAddFood.UseVisualStyleBackColor = true;
@@ -53,9 +54,10 @@
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(795, 12);
+            this.btnSave.Location = new System.Drawing.Point(763, 15);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(122, 27);
+            this.btnSave.Size = new System.Drawing.Size(163, 33);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "   Sauvegarder";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -69,22 +71,24 @@
             this.flpFoodItems.AutoScroll = true;
             this.flpFoodItems.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flpFoodItems.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpFoodItems.Location = new System.Drawing.Point(12, 45);
+            this.flpFoodItems.Location = new System.Drawing.Point(16, 55);
+            this.flpFoodItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flpFoodItems.Name = "flpFoodItems";
-            this.flpFoodItems.Size = new System.Drawing.Size(905, 296);
+            this.flpFoodItems.Size = new System.Drawing.Size(909, 364);
             this.flpFoodItems.TabIndex = 0;
             this.flpFoodItems.WrapContents = false;
             // 
             // frmFood
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(929, 353);
+            this.ClientSize = new System.Drawing.Size(942, 434);
             this.Controls.Add(this.flpFoodItems);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnAddFood);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "frmFood";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

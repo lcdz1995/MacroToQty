@@ -2,12 +2,6 @@
 using MacroToQty.Layout;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MacroToQty
@@ -74,16 +68,12 @@ namespace MacroToQty
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var items = new List<Food>();
-            foreach (FoodItem item in flpFoodItems.Controls)
-            {
-                items.Add(item.GetFoodBO());
-            }
-
             using (var db = new DbContext())
             {
-                FoodManager.DeleteAll(db);
-                FoodManager.BulkInsert(db, items: items);
+                foreach (FoodItem item in flpFoodItems.Controls)
+                {
+                    FoodManager.Save(db, item: item.GetFoodBO());
+                }
             }
 
             this.Close();

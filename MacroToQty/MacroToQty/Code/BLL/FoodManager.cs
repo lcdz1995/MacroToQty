@@ -46,12 +46,13 @@ namespace MacroToQty.Code
             return item;
         }
 
+        [Obsolete("Doesn't work")]
         public static void BulkInsert(DbContext db, List<Food> items)
         {
             using (var bulkCopy = new SqlBulkCopy(db.Connection, SqlBulkCopyOptions.CheckConstraints, null))
             {
                 bulkCopy.DestinationTableName = "dbo.Food";
-
+                
                 try
                 {
                     bulkCopy.WriteToServer(items.ToDataTable());
@@ -79,6 +80,7 @@ namespace MacroToQty.Code
                                 VALUES (@Name, @Calorie, @Carbs, @Protein, @Fat, @Quantity, @IsUnit)
                             END
                         COMMIT TRAN", db.Connection);
+                command.Parameters.AddWithValue("@Id", item.Id.HasValue ? item.Id.Value : -1);
                 command.Parameters.AddWithValue("@Name", item.Name);
                 command.Parameters.AddWithValue("@Calorie", item.Calorie);
                 command.Parameters.AddWithValue("@Carbs", item.Carbs);

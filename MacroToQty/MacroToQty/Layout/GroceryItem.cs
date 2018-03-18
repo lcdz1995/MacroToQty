@@ -30,7 +30,7 @@ namespace MacroToQty
         public GroceryItem(int id)
         {
             this.Name = id.ToString();
-            this.Width = 915;
+            this.Width = 1060;
             this.Height = 50;
             this.BackColor = Color.Azure;
             AddControls();
@@ -69,7 +69,7 @@ namespace MacroToQty
             numQuantity = new UnitNumericUpDown()
             {
                 Location = new Point(MARGIN_LEFT + 450, MARGIN_TOP),
-                Width = 55,
+                Width = 65,
                 Minimum = 0,
                 Maximum = 9999,
                 Increment = 1,
@@ -78,13 +78,14 @@ namespace MacroToQty
                 BackColor = Color.AliceBlue
             };
             numQuantity.ValueChanged += numQuantity_ValueChanged;
+            numQuantity.Click += numQuantity_Click;
             this.Controls.Add(numQuantity);
 
             // btnDelete
             btnDelete = new Button() 
             {
                 Image = Properties.Resources.delete,
-                Location = new Point(MARGIN_LEFT + 530, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 550, MARGIN_TOP),
                 BackColor = Color.LightGray,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Width = 20,
@@ -96,7 +97,7 @@ namespace MacroToQty
             // lblCalories
             lblCalories = new Label()
             {
-                Location = new Point(MARGIN_LEFT + 563, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 603, MARGIN_TOP),
                 Text = "0",
                 Width = 60,
                 TextAlign = ContentAlignment.MiddleCenter,
@@ -107,7 +108,7 @@ namespace MacroToQty
             // lblProteins
             lblProteins = new Label()
             {
-                Location = new Point(MARGIN_LEFT + 653, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 723, MARGIN_TOP),
                 Width = 60,
                 Text = "0",
                 TextAlign = ContentAlignment.MiddleCenter,
@@ -118,7 +119,7 @@ namespace MacroToQty
             // lblCarbs
             lblCarbs = new Label()
             {
-                Location = new Point(MARGIN_LEFT + 743, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 843, MARGIN_TOP),
                 Text = "0",
                 Width = 60,
                 TextAlign = ContentAlignment.MiddleCenter,
@@ -129,7 +130,7 @@ namespace MacroToQty
             // lblFat
             lblFat = new Label()
             {
-                Location = new Point(MARGIN_LEFT + 833, MARGIN_TOP),
+                Location = new Point(MARGIN_LEFT + 963, MARGIN_TOP),
                 Text = "0",
                 Width = 60,
                 TextAlign = ContentAlignment.MiddleCenter,
@@ -188,6 +189,12 @@ namespace MacroToQty
         private void trkQuantity_ValueChanged(object sender, EventArgs e)
         {
             numQuantity.Value = trkQuantity.Value;
+        }
+
+        private void numQuantity_Click(object sender, EventArgs e)
+        {
+            var s = sender as NumericUpDown;
+            s.Select(0, s.Text.Length);
         }
 
         private void numQuantity_ValueChanged(object sender, EventArgs e)

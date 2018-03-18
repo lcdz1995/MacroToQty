@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs
+/MacroToQty/.vs/MacroToQty/v15
+/MacroToQty/MacroToQty/bin/Debug
+/MacroToQty/MacroToQty/obj
